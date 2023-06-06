@@ -151,12 +151,5 @@ renderBall()
 
 
 document.addEventListener('keydown', movePaddle)
-user.addEventListener('drag', (e) => {
-    let position = e.clientX - (blockWidth - 20)
-    if (e.clientX != 0) {
-        userCurrentPosition[0] = position
-        renderPaddle()
-    }
 
-})
 createBlocks()
