@@ -67,12 +67,14 @@ const movePaddle = e => {
         case 'ArrowLeft':
             if (userCurrentPosition[0] > 0 ) {
                 userCurrentPosition[0] -= 10 
+                console.log(userCurrentPosition[0])
                 renderPaddle()
             }
         break;
         case 'ArrowRight':
             if (userCurrentPosition[0] < boardWidth - blockWidth) {
                 userCurrentPosition[0] += 10 
+                console.log(userCurrentPosition[0])
                 renderPaddle()
             }
         break;
@@ -139,6 +141,7 @@ const ball = document.createElement('div')
 ball.classList.add('ball')
 gridElement.appendChild(ball)
 const user = document.createElement('div')
+user.setAttribute('draggable', 'true')
 user.classList.add('paddle')
 gridElement.appendChild(user)
 renderPaddle()
@@ -148,4 +151,12 @@ renderBall()
 
 
 document.addEventListener('keydown', movePaddle)
+user.addEventListener('drag', (e) => {
+    let position = e.clientX - (blockWidth - 20)
+    if (e.clientX != 0) {
+        userCurrentPosition[0] = position
+        renderPaddle()
+    }
+
+})
 createBlocks()
